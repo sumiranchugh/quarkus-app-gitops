@@ -1,0 +1,33 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: my-quarkus-app-bootstrap
+  namespace: janus-argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+  labels:
+    backstage-name: my-quarkus-app-bootstrap
+spec:
+  destination:
+    namespace: janus-argocd
+    server: 'https://kubernetes.default.svc'
+  project: my-quarkus-app-bootstrap
+  revisionHistoryLimit: 10
+  source:
+    path: argocd/
+    repoURL: >-
+      https://gitlab-gitlab.apps.cluster-2g4d5.sandbox92.opentlc.com/development/my-quarkus-app-gitops.git
+  syncPolicy:
+    automated:
+      allowEmpty: true
+      prune: true
+      selfHeal: true
+    retry:
+      backoff:
+        duration: 5s
+        factor: 2
+        maxDuration: 5m
+      limit: 10
+    syncOptions:
+      - CreateNamespace=false
+      - FailOnSharedResource=true
