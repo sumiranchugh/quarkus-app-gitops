@@ -1,0 +1,21 @@
+app:
+  name: my-quarkus-app
+  namespace: my-quarkus-app-dev
+  cluster: .apps.cluster-2g4d5.sandbox92.opentlc.com
+
+git:
+  branch: main
+  repo: https://gitlab-gitlab.apps.cluster-2g4d5.sandbox92.opentlc.com/development/my-quarkus-app.git
+  org: development
+  name: my-quarkus-app
+  host: gitlab-gitlab.apps.cluster-2g4d5.sandbox92.opentlc.com
+  token: ''
+  webhookSecret: ''
+
+
+image:
+  registry: Quay
+  organization: quayadmin
+  host: quay-2g4d5.apps.cluster-2g4d5.sandbox92.opentlc.com
+  name: my-quarkus-app
+  tag: latest
